@@ -1,0 +1,244 @@
+//sections
+@use "../abstracts/" as *;
+
+.home-main {
+    margin-bottom: 8.2rem;
+}
+
+.coop-section {
+    @include grid-setup(2.4rem);
+    row-gap: 9.6rem;
+    &__heading {
+        @include section-heading($color-text-white, 2.4rem);
+        margin-top: 10vh;
+    }
+
+    &__card {
+        opacity: 0;
+        grid-column: span 12;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        &--heading {
+            color: $color-about;
+            font-size: 3.2rem;
+            line-height: 110%;
+            margin-bottom: 0.8rem;
+        }
+
+        &--description {
+            color: $color-text-grey;
+            font-size: 2.4rem;
+            line-height: 1.4;
+        }
+    }
+}
+
+.show {
+    &--coop {
+        animation: 1s appear-up forwards;
+    }
+
+    &--references {
+        * {
+            animation: 1s appear-left forwards;
+        }
+    }
+}
+
+.references-section {
+    @include grid-setup(2.4rem);
+
+    &__heading {
+        @include section-heading($color-text-white, 2.4rem);
+        margin-top: 10vh;
+    }
+
+    &__card {
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+        border-radius: 1.6rem;
+        padding: 2.4rem;
+        color: $color-text-grey;
+        background-color: $background-darker;
+        // min-height: 15.625rem;
+        // z-index: -1;
+        font-size: 1.6rem;
+        grid-column: span 12;
+        position: relative;
+        &::after {
+            content: "";
+            width: 1rem;
+            height: 0;
+            background-color: $color-about;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: height 0.4s;
+            border-radius: 1.6rem 0 0 1.6rem;
+        }
+
+        &:hover {
+            &::after {
+                height: 99.5%;
+            }
+        }
+
+        // }
+        // opacity: 0;
+
+        &--name {
+            font-size: 1.9rem;
+            color: $color-text-white;
+            font-weight: 600;
+            line-height: 100%;
+            padding-block: 3.2rem 0.2rem;
+        }
+    }
+}
+
+.more-section {
+    @include grid-setup(2.4rem);
+
+    &__heading {
+        @include section-heading($color-about, 2.4rem);
+        margin-top: 10vh;
+    }
+
+    &__sticky-box {
+        grid-column: span 1;
+        grid-row: span 3;
+        position: relative;
+        display: none;
+        &--sticky-text {
+            position: sticky;
+            writing-mode: vertical-rl;
+            padding: 1rem 0;
+            top: 10vh;
+            color: $color-text-white;
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 130%;
+        }
+    }
+
+    &__card {
+        width: 100%;
+        grid-column: span 12;
+        display: flex;
+    }
+
+    &__card-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 6.4rem;
+        position: relative;
+    }
+
+    &__card-image{
+        display: none;
+        width: 100%;
+        img{
+            width: 100%;
+
+        }
+    }
+
+    &__card-text {
+        &--heading {
+            font-size: 3.2rem;
+            color: $color-text-white;
+            font-weight: 800;
+            line-height: 120%;
+        }
+
+        &--subtitle {
+            font-size: 1.6rem;
+            color: $color-about;
+            margin-bottom: 1.6rem;
+        }
+
+        &--description {
+            font-size: 2.4rem;
+            color: $color-text-grey;
+        }
+    }
+}
+
+@media only screen and (min-width: $bp-xs) {
+    .more-section {
+        &__sticky-box {
+            display: block;
+        }
+
+        &__card {
+            max-width: 100%;
+            grid-column: 2 / span 11;
+        }
+    }
+}
+
+@media only screen and (min-width: $bp-sm) {
+    .references-section {
+        &__card {
+            grid-column: span 6;
+            width: 100%;
+            &--last {
+                grid-column: span 12;
+                width: 100%;
+            }
+        }
+    }
+
+    .more-section {
+        &__sticky-box {
+            grid-column: span 4;
+            &--sticky-text {
+                writing-mode: horizontal-tb;
+            padding: 0;
+
+            }
+        }
+
+        &__card {
+            max-width: 100%;
+            grid-column: 5 / span 8;
+        }
+    }
+}
+
+@media only screen and (min-width: $bp-md) {
+    .coop-section {
+        &__card {
+            grid-column: 3 / span 8;
+        }
+    }
+
+    .references-section {
+        &__card {
+            &--last {
+                grid-column: 3 / span 8;
+                width: 100%;
+            }
+        }
+    }
+
+
+}
+
+@media only screen and (min-width: $bp-xl) {
+    .references-section {
+        &__card {
+            grid-column: span 4;
+            width: 100%;
+        }
+    }
+
+        .more-section{
+            &__card-image{
+        display: block;
+    }
+    }
+}

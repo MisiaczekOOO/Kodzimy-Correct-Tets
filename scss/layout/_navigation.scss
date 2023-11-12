@@ -1,0 +1,167 @@
+@use "../abstracts/" as *;
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translate(50% 50%);
+    width: 100%;
+    margin: 0 auto;
+    @include grid-setup(2.4rem);
+    max-width: 1600px;
+    padding: 0 calc($main-website-padding/2);
+
+    backdrop-filter: blur(3px);
+
+    z-index: 100;
+
+    &__name {
+        display: none;
+    }
+
+    &__logo {
+        grid-column: span 3;
+        text-transform: uppercase;
+        font-weight: 900;
+        color: $color-text-white;
+        font-size: 32px;
+        &--main {
+            display: none;
+        }
+        &--portfolio {
+            color: $color-portfolio;
+        }
+
+        &--about {
+            color: $color-about;
+        }
+
+        &--services {
+            color: $color-services;
+        }
+
+        &--contact {
+            color: $color-contact;
+        }
+    }
+
+    &__list {
+        grid-column: 4 / 9 span;
+        display: none;
+        gap: 2.4rem;
+        transition: all 1s;
+        align-items: center;
+        justify-content: flex-end;
+        &--item {
+            color: $color-text-white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            position: relative;
+            &::after {
+                transition: all 0.7s;
+                content: "";
+                bottom: -0.8rem;
+                left: 0;
+                max-height: 0.3rem;
+                width: 0;
+                position: absolute;
+            }
+
+            &:hover {
+                &::after {
+                    width: 100%;
+                }
+            }
+
+            &--about-us {
+                color: $color-about;
+                &:hover {
+                    &::after {
+                        background-color: $color-about;
+                    }
+                }
+            }
+
+            &--services {
+                color: $color-services;
+                &:hover {
+                    &::after {
+                        background-color: $color-services;
+                    }
+                }
+            }
+
+            &--portfolio {
+                color: $color-portfolio;
+                &:hover {
+                    &::after {
+                        background-color: $color-portfolio;
+                    }
+                }
+            }
+
+            &--contact {
+                color: $color-contact;
+                &:hover {
+                    &::after {
+                        background-color: $color-contact;
+                    }
+                }
+            }
+        }
+    }
+    &__hamburger {
+        grid-column: 12 / 1 span;
+
+        margin: auto 0;
+        z-index: 2;
+        max-width: 64px;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width: $bp-md) {
+    .navbar {
+        &__list {
+            display: flex;
+            &--item {
+                &::after {
+                    height: 0.7rem;
+                }
+            }
+        }
+
+        &__hamburger {
+            display: none;
+        }
+    }
+}
+
+@media only screen and (min-width: $bp-xs) {
+    .navbar {
+        &__logo {
+            &--main {
+                display: inline;
+            }
+        }
+    }
+}
+
+.navbar-phone {
+    grid-column: auto;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+    background-color: $background-darker;
+    &--item {
+        font-size: 6.4rem;
+    }
+}
